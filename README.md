@@ -58,7 +58,7 @@ rar
 # docker & kubernetes
 - kind
 - k9s
-- krew
+- krew (kvaps/node-shell, nsenter)
 - kubectx
 - kustomize
 - helm

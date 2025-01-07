@@ -1,0 +1,46 @@
+#compdef krun
+
+autoload -U is-at-least
+
+krun() {
+  local pod_name="krun"
+  local image=""
+  local command=("sh")
+
+  while getopts "n:" opt; do
+    case $opt in
+      n)
+        pod_name="$OPTARG"
+        ;;
+      \?)
+        return 1
+        ;;
+    esac
+  done
+
+  shift $((OPTIND-1))
+
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: krun [-n pod_name] image_name [-- command [args ...]]"
+    return 1
+  fi
+
+  image="$1"
+  shift
+
+  local command_args=()
+
+  if [[ "$1" == "--" ]]; then
+    shift
+    command_args=("$@")
+  fi
+
+  if [[ -z "$image" ]]; then
+    echo "Usage: krun [-n pod_name] image_name [-- command [args ...]]"
+    return 1
+  fi
+
+  kubectl run -i --tty --rm --restart=Never "$pod_name" --image="$image" -- "${command[@]}" "${command_args[@]}"
+}
+
+krun "$@"
