@@ -76,3 +76,7 @@ rar
 
 - https://dtf.ru/u/703042-dante-sss/1583083-kak-aktivirovat-ide-jetbrains-i-ne-platit
 - https://3.jetbra.in/
+
+# tabby
+
+- https://gist.github.com/belo4ya/521d8346e2bc9f0b574b1ed460612f53
